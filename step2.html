@@ -1,0 +1,128 @@
+<html>
+
+<head>
+  <meta charset="utf-8">    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+        @media(max-width:768px)
+        {
+            .grid-mobile
+            {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+        }
+        .options {
+            margin-bottom: 20px;
+        }
+        .slider-container {
+            margin-bottom: 20px;
+        }
+        .slider-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .continue-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ccff00;
+            color: #000;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .continue-button:hover {
+            background-color: #b6e600;
+        }
+        </style>
+        
+
+</head>
+
+<body style="background:#eaf0f1">
+    <header class="p-3 " style="background: rgb(255, 255, 255);">
+        <div class="container d-flex align-items-center justify-content-between">
+            <img style="height: 1.7rem ;" src="assets/img/vshred.svg">
+            <img style="height: 1.7rem ;" src="assets/img/menu (2).png">
+        </div>
+    </header>
+<div class="container d-flex justify-content-center flex-column align-items-center">
+    <div class=" pb-5 d-flex flex-column align-items-center" style="background: #fcfcfc;">
+    <h3 class="my-5 text-center" style="font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 2rem; font-weight: 600;">Find out EXACTLY What Diet & Training is Best For You</h3>
+
+    <div class=" mb-5 d-flex p-2 justify-content-start progress-container" style="background:#fff; border-radius:6px; max-width: 53rem; width: 100%; height: 1.5rem;">
+        <div class="inner-bar" style="background:#a6ff00;  width: 48%; border-radius: 20px;  height: 100%;"></div>
+    </div>
+    <div class="title"><h6 class="mb-5 text-center" style="font-family: 'Lato', sans-serif;  font-size: 1.6rem; font-weight: 600;"> Height: <span id="height-display">0'0"</span></h6></div>
+    <div class="options d-flex" style="gap: 1.5rem;">
+        <div>
+            <input type="radio" id="imperial" name="unit" value="imperial" checked>
+            <label style="font-size: 1.1rem;" for="imperial">Imperial</label>
+        </div>
+        <div>
+            <input type="radio" id="metric" name="unit" value="metric">
+            <label style="font-size: 1.1rem;" for="metric">Metric</label>
+        </div>
+    </div>
+    <div class="slider-container d-flex" style="gap: 1.5rem;">
+        <label for="height-slider" id="measure-id">Inches</label>
+        <input type="range" id="height-slider" min="0" max="84" value="0">
+    </div>
+    <a href="step3.html" style="font-family: 'Oswald', sans-serif; font-size: 1.4rem; background: #a6ff00; color: #000;" class="continue-button">CONTINUE</a>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        const heightDisplay = document.getElementById('height-display');
+        const heightSlider = document.getElementById('height-slider');
+        const imperialOption = document.getElementById('imperial');
+        const metricOption = document.getElementById('metric');
+        const continueButton = document.querySelector('.continue-button');
+        const measureId = document.querySelector('#measure-id');
+    
+        heightSlider.addEventListener('input', updateHeightDisplay);
+        imperialOption.addEventListener('change', updateHeightDisplay);
+        metricOption.addEventListener('change', updateHeightDisplay);
+        continueButton.addEventListener('click', saveHeightInfo);
+    
+        function updateHeightDisplay() {
+            const heightValue = heightSlider.value;
+            if (imperialOption.checked) {
+                const feet = Math.floor(heightValue / 12);
+                const inches = heightValue % 12;
+                heightDisplay.textContent = `${feet}'${inches}"`;
+                measureId.textContent = 'Inches'
+
+            } else {
+                const centimeters = (heightValue * 2.54).toFixed(2);
+                heightDisplay.textContent = `${centimeters} cm`;
+                measureId.textContent = 'Centimeters'
+            }
+        }
+    
+        function saveHeightInfo(event) {
+            event.preventDefault();
+            const heightValue = heightSlider.value;
+            const unit = imperialOption.checked ? 'imperial' : 'metric';
+            localStorage.setItem('height', heightValue);
+            localStorage.setItem('unit', unit);
+            window.location.href = continueButton.href;
+        }
+    </script>
+
+
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="assets/js/index.js"></script>
+</body>
+
+
+</html>

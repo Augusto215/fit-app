@@ -1,0 +1,83 @@
+<html>
+
+<head>
+  <meta charset="utf-8">    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+        @media(max-width:768px)
+        {
+            .grid-mobile
+            {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1rem !important;
+            }
+
+            .mobile-div
+            {
+                gap: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .last-div-img
+            {
+                max-width: 50%;
+                gap: 1rem !important;
+            }
+
+        }
+        </style>
+        
+
+</head>
+
+<body style="background:#eaf0f1">
+    <header class="p-3" style="background: rgb(255, 255, 255);">
+        <div class="container d-flex align-items-center justify-content-between">
+            <img style="height: 1.7rem ;" src="assets/img/vshred.svg">
+            <img style="height: 1.7rem ;" src="assets/img/menu (2).png">
+        </div>
+    </header>
+ 
+    <div class="container d-flex justify-content-center flex-column align-items-center">
+        <h3 class="my-5 text-center" style="font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 2rem; font-weight: 600;">Find out EXACTLY What Diet & Training is Best For You</h3>
+    
+        <div class="mb-5 d-flex p-2 justify-content-start progress-container" style="background:#fff; border-radius:6px; max-width: 53rem; width: 100%; height: 1.5rem;">
+            <div class="inner-bar" style="background:#a6ff00; width: 96%; border-radius: 20px; height: 100%;"></div>
+        </div>
+        <h6 class="mb-5 text-center" style="font-family: 'Lato', sans-serif; font-size: 1.6rem; font-weight: 600;">Which best describes you?</h6>
+    
+        <div class="d-flex flex-column align-items-center mb-5" style="max-width: 70rem;">
+            <div class="d-flex  mobile-div justify-content-center" style="gap: 2rem; margin-bottom: 2rem;">
+                <a href="video.html" data-description="I'M SOFT. I NEED TO LOSE 5 TO 10LBS AND TONE UP MY STOMACH, BUTT AND ARMS"><img style="max-height: 20rem; max-width: 100%;" src="assets/img/female-answer-1.png"></a>
+                <a href="video.html" data-description="I HAVE 20LBS OR MORE OF FAT I REALLY NEED TO LOSE WHILE BUILDING SEXY MUSCLE TONE"><img style="max-height: 20rem; max-width: 100%;" src="assets/img/female-answer-2.png"></a>
+            </div>
+            <div class="d-flex justify-content-center last-div-img" style="gap: 4rem;">
+                <a href="video.html" data-description="IM SKINNY. I NEED TO ADD SOME TONED MUSCLE WHILE BURNING THAT STUBBORN FAT IN CERTAIN AREAS & I WOULD LOOK AMAZING"><img style="max-height: 20rem; max-width: 100%;" src="assets/img/female-answer-3.png"></a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        document.querySelectorAll('.d-flex a').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const description = this.getAttribute('data-description');
+                localStorage.setItem('description', description);
+                window.location.href = this.href;
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="assets/js/index.js"></script>
+</body>
+
+
+</html>

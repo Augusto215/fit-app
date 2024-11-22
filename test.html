@@ -1,0 +1,91 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Height Selector</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 20px;
+                background-color: #f5f5f5;
+            }
+            .container {
+                max-width: 400px;
+                margin: auto;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+            .title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            .options {
+                margin-bottom: 20px;
+            }
+            .slider-container {
+                margin-bottom: 20px;
+            }
+            .slider-container label {
+                display: block;
+                margin-bottom: 5px;
+            }
+            .continue-button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #ccff00;
+                color: #000;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+            .continue-button:hover {
+                background-color: #b6e600;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="title">Height: <span id="height-display">0'0"</span></div>
+            <div class="options">
+                <input type="radio" id="imperial" name="unit" value="imperial" checked>
+                <label for="imperial">Imperial</label>
+                <input type="radio" id="metric" name="unit" value="metric">
+                <label for="metric">Metric</label>
+            </div>
+            <div class="slider-container">
+                <label for="height-slider">Inches</label>
+                <input type="range" id="height-slider" min="0" max="84" value="0">
+            </div>
+            <a href="#" class="continue-button">CONTINUE</a>
+        </div>
+
+        <script>
+            const heightDisplay = document.getElementById('height-display');
+            const heightSlider = document.getElementById('height-slider');
+            const imperialOption = document.getElementById('imperial');
+            const metricOption = document.getElementById('metric');
+
+            heightSlider.addEventListener('input', updateHeightDisplay);
+            imperialOption.addEventListener('change', updateHeightDisplay);
+            metricOption.addEventListener('change', updateHeightDisplay);
+
+            function updateHeightDisplay() {
+                const heightValue = heightSlider.value;
+                if (imperialOption.checked) {
+                    const feet = Math.floor(heightValue / 12);
+                    const inches = heightValue % 12;
+                    heightDisplay.textContent = `${feet}'${inches}"`;
+                } else {
+                    const centimeters = (heightValue * 2.54).toFixed(2);
+                    heightDisplay.textContent = `${centimeters} cm`;
+                }
+            }
+        </script>
+    </body>
+    </html>

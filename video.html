@@ -1,0 +1,396 @@
+<html>
+
+<head>
+  <meta charset="utf-8">    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+        @media(max-width:768px)
+        {
+            .grid-mobile
+            {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            .title-font
+        {
+            font-size: 1.4rem !important;
+        }
+
+        .describe-text
+        {
+            font-size: 1.1rem !important;
+        }
+
+        .mobile-div
+        {
+            flex-direction: column;
+            align-items: center !important;
+
+        }
+
+        .mobile-div span
+        {
+            max-width: 100% !important;
+            order: 2;
+        }
+
+        .mobile-div img
+        {
+            order: 1;
+        }
+
+        .h2-text
+        {
+            text-align: center !important;
+            width: 100% !important;
+        }
+
+        }
+
+        .mobile-div span
+        {
+            font-family: 'Oswald' !important;
+            font-size:1.4rem !important;
+        }
+        </style>
+        
+
+</head>
+
+<body style="background:#ffffff">
+    <header class="p-3" style="background: #eaf0f1;">
+        <div class="container d-flex align-items-center justify-content-between">
+            <img style="height: 1.7rem ;" src="assets/img/vshred.svg">
+            <img style="height: 1.7rem ;" src="assets/img/menu (2).png">
+        </div>
+    </header>
+ 
+    <div class="container d-flex justify-content-center flex-column align-items-center">
+        <h3 class="mt-5 title-font text-center" style="color:red; font-family: 'Oswald', sans-serif; font-size: 2rem; font-weight: 500;">In this video Vince Sant, best selling fitness author, celebrity trainer and
+            cover model shares 3 crucial fixes SPECIFICALLY for YOUR body type and fitness goals you can start using today: </h3>
+    
+        <div class="d-flex container w-100 mt-4 mb-5">
+            <img style="max-width: 100%; border-radius: 12px;" src="assets/img/22606161_m-1920x1080.jpg">
+        </div>
+        <div class="esconder align-items-center flex-column" >
+        <div class="p-2 w-100 d-flex container justify-content-center" style="background:black; max-width: 40rem;">
+            <h2 class="mb-0" style="color: #fff; font-weight: 700; font-family: 'Oswald' !important;">YOUR DAILY MACROS</h2>
+        </div>
+    
+            <h2 class="mt-4 d-flex justify-content-center" style="font-family: 'Oswald' !important; font-weight: 700;"><span class="calories-span">1117 Calories Per Day</span></h2>
+            <span class="carbs-span d-flex justify-content-center" style="font-family: 'Oswald' !important; font-size: 1.6rem;">Carbohydrates: 70g <span style="color: gray; font-size: 1.2rem;">24.9%</span></span>
+            <span class="proteins-span d-flex justify-content-center" style="font-family: 'Oswald' !important; font-size: 1.6rem;">Protein: 140g <span style="color: gray; font-size: 1.2rem;">50.1%</span></span>
+            <span class="fats-span d-flex justify-content-center" style="font-family: 'Oswald' !important; font-size: 1.6rem;">FAT: 31g <span style="color: gray; font-size: 1.2rem;">25%</span></span>
+            <span class="activity-span d-flex justify-content-center" style="font-family: 'Oswald' !important; font-size: 1.6rem;">Activity: light</span>
+        
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Retrieve stored data
+                const gender = localStorage.getItem('Gender');
+                const weight = localStorage.getItem('weight');
+                const height = localStorage.getItem('height');
+                const age = localStorage.getItem('age');
+                const activityLevel = localStorage.getItem('activityLevel');
+        
+                // Calculate BMR
+                let bmr;
+                if (gender === 'male') {
+                    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+                } else {
+                    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+                }
+        
+                // Calculate TMT based on activity level
+                const activityFactors = {
+                    'sedentary': 1.2,
+                    'lightly-active': 1.375,
+                    'moderately-active': 1.55,
+                    'very-active': 1.725,
+                    'extra-active': 1.9
+                };
+                const tmt = bmr * activityFactors[activityLevel];
+        
+                // Macronutrient distribution
+                const carbCalories = tmt * 0.50;
+                const proteinCalories = tmt * 0.30;
+                const fatCalories = tmt * 0.20;
+        
+                const carbs = carbCalories / 4;
+                const proteins = proteinCalories / 4;
+                const fats = fatCalories / 9;
+        
+                // Update spans
+                document.querySelector('.calories-span').textContent = `${Math.round(tmt)} Calories Per Day`;
+                document.querySelector('.carbs-span').textContent = `Carbohydrates: ${Math.round(carbs)}g (${(carbCalories / tmt * 100).toFixed(1)}%)`;
+                document.querySelector('.proteins-span').textContent = `Protein: ${Math.round(proteins)}g (${(proteinCalories / tmt * 100).toFixed(1)}%)`;
+                document.querySelector('.fats-span').textContent = `FAT: ${Math.round(fats)}g (${(fatCalories / tmt * 100).toFixed(1)}%)`;
+                document.querySelector('.activity-span').textContent = `Activity: ${activityLevel}`;
+            });
+        </script>
+        <div class="mt-5 p-4 w-100 d-flex container justify-content-center" style="max-width: 60rem; width: 100%;; background: url('assets/img/in-h-bg.png') no-repeat center center/100% 100%;
+        padding-top: 20px;
+        padding-bottom: 40px;
+        text-align: center;
+        color: #fff;">
+            <h1 class="mb-0" style="color: #fff; margin-top:-.7rem !important; font-weight: 700; font-family: 'Oswald' !important;">HERE IS WHAT IS INCLUDED</h1>
+        </div>
+        <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center">
+            <img src="assets\img\in-1-v2.jpg">
+            <span class="h2-text" style="max-width:50%;"><h2 style="font-family: 'Oswald' !important;">
+                Mobile Workouts
+            </h2>
+            <span >
+                Take your plan anywhere you go! We provide you with a mobile version of both our at home and gym workouts. They come with descriptions of each exercise, how to videos, set and rep ranges. Designed specifically for mobile devices to look great on all phones, tablets, and computers. 
+            </span>
+        </span>
+        </div>
+        <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center">
+            <span class="text-end h2-text" style="max-width:50%;"><h2 style="font-family: 'Oswald' !important; color: #f92ef1;">
+                Intro: Training Your Mind
+            </h2>
+            <span >
+                30% of getting the body you want is strategy, 70% of getting the body you want is your psychology. Through my years of dieting and working out, I have had to master the art of self-motivation.. In this section I share some of my secrets that will help you kick old habits, limiting beliefs, and procrastination. Let’s clear your mind and get you ready to see this through until you reach your goal!
+                Training your mind            </span>
+        </span>
+        <img src="assets\img\in-2-v2.jpg">
+
+        </div>
+        <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center">
+            <img src="assets\img\in-3-v2.jpg">
+            <span class="h2-text" style="max-width:50%;"><h2 style="font-family: 'Oswald' !important;">
+                Diet Guide Part 1: Beginner
+            </h2>
+            <span >
+                Learn the basics of nutrition that will form the nucleus that all of your food choices will stem from. Also included in an easier dieting approach that teaches you how to customize your own plan to help ensure your goal of weight loss or muscle gain.             </span>
+        </span>
+        </div>
+
+        <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center">
+            <span class="text-end h2-text" style="max-width:50%;"><h2 style="color:#f92ef1; font-family: 'Oswald' !important;">
+                Diet Guide pt. 2: Advanced            </h2>
+            <span >
+                After learning the basics of dieting and nutrition, I take you through one of the most, if not the most, popular nutrition strategies used by fitness models and athletes all around the world. I want to teach you how to be a master at creating your own diet and knowing how to tweak it when you hit a plateau or when your goals change.             </span>
+        </span>
+        <img src="assets\img\in-4-v2.jpg">
+
+        </div>
+
+        <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center">
+            <img src="assets\img\in-5-v2.jpg">
+            <span class="h2-text" style="max-width:50%;"><h2 style="font-family: 'Oswald' !important;">
+                THE 10 COMMANDMENTS OF FITNESS            </h2>
+            <span >
+                Like the Bible has it’s own commandments, so does fitness. These are the most core principles to follow on a day to day basis while working out in order to get the most out of your workouts in the shortest time possible. Learn to train smarter, not harder!             </span>
+        </span>
+        </div>
+
+        <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center">
+            <span class="text-end h2-text" style="max-width:50%;"><h2 style="color:#f92ef1; font-family: 'Oswald' !important;">
+                Workout Log            </h2>
+            <span >
+                Take your plan anywhere you go! We provide you with a mobile version of both our at home and gym workouts. They come with descriptions of each exercise, how to videos, set and rep ranges. Designed specifically for mobile devices to look great on all phones, tablets, and computers. 
+            </span>
+        </span>
+        <img src="assets\img\in-6-v2.jpg">
+
+        </div>
+
+        <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center">
+            <img src="assets\img\in-7-v2.jpg">
+            <span class="h2-text" style="max-width:50%;"><h2 style="font-family: 'Oswald' !important;">
+                HIIT Guide
+            </h2>
+            <span >
+                In this guide I teach you how to do a certain type of cardio that triggers the Epoc Effect (Excess Post Exercises Oxygen Consumption). Most workouts only burn calories during the actual workout. This will burn calories for hours AFTER your workouts are complete. You get my fully detailed cardio plan. This is one of the most CRUCIAL changes you must add to your workouts. (And you only have to do these short 15 minute cardio sessions 3 days per week. No more treadmill!)             </span>
+        </span>
+        </div>
+
+        <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center">
+            <span class="text-end h2-text" style="max-width:50%;"><h2 style="font-family: 'Oswald' !important; color:#f92ef1">
+                Outro: Tying It All Together            </h2>
+            <span >
+                This is about sending you on your way with the motivation to follow through with all 90 days of this plan. We don’t like quitters and we want to see you succeed so drink deep in the language used.             </span>
+        </span>
+        <img src="assets\img\in-8-v2.jpg">
+
+        </div>
+
+        <div class="w-100" style="
+            background: url(https://d12hfwo7xdmxn8.cloudfront.net/salespages/female-fat-loss-bundle/bu-h-bg.jpg) no-repeat top 15px center/auto;
+            text-align: center;
+            margin-bottom: 65px;
+          ">
+        <img style="max-width: 100%;" src="assets\img\bonus-header.png">
+    </div>
+
+    <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center p-4" style="border:5px solid #44b5fb; box-shadow:0 0 15px 0 rgba(0, 0, 0, 0.5); border-radius:12px; max-width: 70rem;">
+        <span class="text-start h2-text" style="max-width:50%;"><span><h1 style="color:#f92ef1; font-family: 'Oswald' !important;">FREE BONUS #1:</h1>
+           <h3 class="mb-3"> (Normally $47.00)
+SIX PACK SHRED    </h3>       </span>
+        <span >
+            For those of you who have ALWAYS wanted a 6 pack more than anything, this program is a must have. As a fitness cover model he has to keep his abs shredded year round and this program is a behind the scenes look at exactly what ab exercises he does, nutrition for getting his abs to really pop, and the cardio he does for taking off that last layer so even his lower abs show. It comes with beginner, intermediate, and advanced follow along ab workouts designed to give you a symmetrical 6 pack.         </span>
+    </span>
+    <img src="assets\img\ftt-1-v2.png">
+
+    </div>
+
+    
+    <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center p-4" style="border:5px solid #44b5fb; box-shadow:0 0 15px 0 rgba(0, 0, 0, 0.5); border-radius:12px; max-width: 70rem;">
+        <img src="assets\img\ftt-2-v2.png">
+
+        <span class="text-start h2-text" style="max-width:50%;"><span><h1 style="color:#f92ef1; font-family: 'Oswald' !important;">FREE BONUS #2:</h1>
+           <h3 class="mb-3"> (Normally $47.00)
+            THE BOOTY BUILDER    </h3>       </span>
+        <span >
+            Get the Butt of Your Dreams.This is one of our most requested programs. If you are like most ladies I’ve helped, no matter what you’ve tried, you can’t seem to get that look you are after and your body won’t cooperate. Here is EXACTLY how to get a butt that looks amazing in tight jeans and in a bikini. To produce results fast, you MUST follow a systematic workout focussed on all 4 areas of the butt. Each workout in this program I hand picked and in a specific order so you get an amazing butt fast!     </span>
+
+    </div>
+
+    <div class="d-flex mobile-div container justify-content-center mt-4 align-items-center p-4" style="border:5px solid #44b5fb; box-shadow:0 0 15px 0 rgba(0, 0, 0, 0.5); border-radius:12px; max-width: 70rem;">
+        <span class="text-start h2-text" style="max-width:50%;"><span><h1 style="color:#f92ef1; font-family: 'Oswald' !important;">FREE BONUS #3:</h1>
+           <h3 class="mb-3"> (Normally $37.00)
+            RECIPE GUIDE     </h3>       </span>
+        <span >
+            If you have to eat bland chicken and broccoli or other tasteless boring foods every meal, you’ll give up fast. But if you can eat foods that taste amazing and make you feel full, you’ll be able to stick to your nutrition plan long term. We know that better than anyone and that’s why we got with a celebrity chef here in Los Angeles and had her create each one of these recipes for us. They taste amazing and are incredibly healthy. Considering 80% of reaching your fitness goal comes down to sticking to your nutrition plan. This recipe guide is your secret weapon to loving the journey!          </span>
+    </span>
+    <img src="assets\img\ftt-3-v2.png">
+
+    </div>
+
+    <div class="d-flex mb-5 mobile-div container justify-content-center mt-4 align-items-center p-4" style="border:5px solid #44b5fb; box-shadow:0 0 15px 0 rgba(0, 0, 0, 0.5); border-radius:12px; max-width: 70rem;">
+        <img src="assets\img\ftt-4-v2.png">
+
+        <span class="text-start h2-text" style="max-width:50%;"><span><h1 style="color:#f92ef1; font-family: 'Oswald' !important;">FREE BONUS #4:</h1>
+           <h3 class="mb-3"> Supplement Guide   </h3>       </span>
+        <span >
+            Most supplements are absolute garbage and they just steal your money. But there are a handful that are fantastic. Just remember supplements are just that, “supplemental.” They aren’t magic. The videos in this guide educate you about the few good supplements out there. It teaches you when you should take them and how they work. So you can stop wasting your money on supplements that have no research backing them and actually start seeing results.      </span>
+
+    </div>
+        </div>
+        </div>  
+    <div class="fluid-container d-flex  w-100" style="background: url(https://d12hfwo7xdmxn8.cloudfront.net/salespages/female-fat-loss-bundle/back-bg.jpg) no-repeat center center/cover;
+    padding: 100px 0 !important;
+    color: #fff;">
+    <div class="container  d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex justify-content-center mobile-div align-items-center" style="gap:2rem">
+    <img style="max-width: 100%;" src="assets\img\back-logo.png">
+    <span class="h2-text" style="max-width: 50%;">
+        <h2 class="mb-0 p-0" style="font-style: 'Oswald' !important;">
+            My 30-Day
+            </h2>
+            <h1 class="mt-0 p-0" style="color: red;">MONEY BACK GUARANTEE
+        </h1>
+        <span style="color: #fff;">
+            I personally guarantee the results from all of my fitness programs. If you try this program for 30 days and you are not happy with the results, we will refund you. All you have to do is send us an email with your request.
+        </span>
+    </span>
+    </div>
+    </div>
+    </div>
+
+        <div class="container mt-5">
+            <h1 class="pb-0 mb-0 text-center" style="font-family: 'Oswald' !important;">
+                EXCLUSIVE MEMBERS ONLY PORTAL 
+            </h1>
+            <h2 class="text-center" style="font-family: 'Oswald' !important;">
+                WITH ALL OF THIS INCLUDED
+            </h2>
+
+            <img style="max-width: 100%;" src="assets\img\ft-l-v2.jpg">
+
+            <h3 class="text-center" style="color: red; font-family: 'Oswald' !important;">+ 4 FREE BONUSES:</h3> 
+            <div class=" mt-4 mobile-div d-flex justify-content-center" style="gap: 3rem;">
+                <img src="assets/img/ftt-1-v2.png">
+                <img src="assets/img/ftt-2-v2.png">
+                <img src="assets/img/ftt-3-v2.png">
+                <img src="assets/img/ftt-4-v2.png">
+            </div>
+            <span class="text-center d-flex w-100 justify-content-center">
+                *all products are digital and will be available immediately upon purchase 
+            </span>
+            <h3 class="text-center mt-4" style="color: red; font-family: 'Oswald' !important; text-decoration-line: line-through; text-decoration-color:red;">Normally $230</h3> 
+            <div class="d-flex justify-content-center">
+            <a href="" class="text-center w-100 d-flex justify-content-center" style="max-width:60rem; box-shadow:rgba(0, 0, 0, 0.4) 0px 2px 5px 2px; padding:.7rem; text-decoration:none; background-color: #f26522; border-radius:5px; font-family: 'Oswald' !important; font-size: 2.4rem; color:#fff">
+                EVERYTHING JUST FOR $57.00
+            </a>
+        </div>
+        <span class="mt-4 text-center d-flex w-100 justify-content-center">
+            <i>* Plus applicable sales tax </i>       </span>
+
+        <span class="text-center mt-3 d-flex w-100 justify-content-center">
+            Secure Order Form - 100% Protected & Safe
+        </span>
+        <div class="d-flex justify-content-center">
+        <img class="mt-3 mb-5" style="max-width:100%" src="assets\img\card.png">
+    </div>
+        </div>
+    
+        <!-- Container for displaying localStorage information -->
+        <div class="mt-5 w-100 d-none" id="info-container">
+            <span id="age-range" class="d-block mb-2"></span>
+            <span id="height" class="d-block mb-2"></span>
+            <span id="weight" class="d-block mb-2"></span>
+            <span id="activity-level" class="d-block mb-2"></span>
+            <span id="description" class="d-block mb-2"></span>
+        </div>
+        </div>  
+
+        <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+        /* ALTERE O VALOR 10 PARA OS SEGUNDOS EM QUE AS SEÇÕES VÃO APARECER */
+        var SECONDS_TO_DISPLAY = 3;
+        var CLASS_TO_DISPLAY = ".esconder";
+        /* DAQUI PARA BAIXO NAO PRECISA ALTERAR */
+        var attempts = 0;
+        var elsHiddenList = [];
+        var elsDisplayed = false;
+        var elsHidden = document.querySelectorAll(CLASS_TO_DISPLAY);
+        var alreadyDisplayedKey = "alreadyElsDisplayed" + SECONDS_TO_DISPLAY;
+        var alreadyElsDisplayed = null;
+        try {
+            alreadyElsDisplayed = localStorage.getItem(alreadyDisplayedKey);
+        } catch(e) {
+            console.warn('Failed to read data from localStorage: ', e);
+        }
+        setTimeout(function () { elsHiddenList = Array.prototype.slice.call(elsHidden); }, 0);
+        var showHiddenElements = function () {
+        elsDisplayed = true;
+        elsHiddenList.forEach((e) => e.style.display = "block");
+        try {
+          localStorage.setItem(alreadyDisplayedKey, true);
+        } catch (e) {
+          console.warn('Failed to save data in localStorage: ', e);
+        }
+        }
+        var startWatchVideoProgress = function () {
+        if (typeof smartplayer === 'undefined' || !(smartplayer.instances && smartplayer.instances.length)) {
+        if (attempts >= 10) return;
+        attempts += 1;
+        return setTimeout(function () { startWatchVideoProgress() }, 1000);
+        }
+        smartplayer.instances[0].on('timeupdate', () => {
+        if (elsDisplayed || smartplayer.instances[0].smartAutoPlay) return;
+        if (smartplayer.instances[0].video.currentTime < SECONDS_TO_DISPLAY) return;
+        showHiddenElements();
+        })
+        }
+        if (alreadyElsDisplayed === 'true') {
+        setTimeout(function () { showHiddenElements(); }, 100);
+        } else {
+        startWatchVideoProgress()
+        }
+        });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+       
+    </body>
+
+</html>
